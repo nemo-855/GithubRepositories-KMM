@@ -25,7 +25,9 @@ kotlin {
     sourceSets {
         val commonMain by getting {
             dependencies {
-                implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
+                implementation(Libraries.kotlinDateTime)
+                implementation(Libraries.Koin.core)
+                implementation(Libraries.Koin.test)
             }
         }
         val commonTest by getting {
@@ -62,5 +64,20 @@ android {
     defaultConfig {
         minSdk = 26
         targetSdk = 33
+    }
+}
+
+//FIXME: 別ファイルに切り出したい
+object Versions {
+    const val koin = "3.2.0"
+}
+
+object Libraries {
+    const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
+
+    object Koin {
+        const val core = "io.insert-koin:koin-core:${Versions.koin}"
+        const val test = "io.insert-koin:koin-test:${Versions.koin}"
+        const val android = "io.insert-koin:koin-android:${Versions.koin}"
     }
 }
