@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("kotlinx-serialization")
 }
 
 kotlin {
@@ -28,6 +29,10 @@ kotlin {
                 implementation(Libraries.kotlinDateTime)
                 implementation(Libraries.Koin.core)
                 implementation(Libraries.Koin.test)
+                implementation(Libraries.Ktor.core)
+                implementation(Libraries.Ktor.okhttp)
+                implementation(Libraries.kotlinxCoroutines)
+                implementation(Libraries.kotlinxSerialization)
             }
         }
         val commonTest by getting {
@@ -70,14 +75,24 @@ android {
 //FIXME: 別ファイルに切り出したい
 object Versions {
     const val koin = "3.2.0"
+    const val ktor = "2.2.4"
 }
 
 object Libraries {
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 
+    const val kotlinxCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+
+    const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
         const val test = "io.insert-koin:koin-test:${Versions.koin}"
         const val android = "io.insert-koin:koin-android:${Versions.koin}"
+    }
+
+    object Ktor {
+        const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
+        const val okhttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
     }
 }
