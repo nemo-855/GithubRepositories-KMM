@@ -1,6 +1,7 @@
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
+    id("kotlinx-serialization")
 }
 
 kotlin {
@@ -31,6 +32,7 @@ kotlin {
                 implementation(Libraries.Ktor.core)
                 implementation(Libraries.Ktor.okhttp)
                 implementation(Libraries.kotlinxCoroutines)
+                implementation(Libraries.kotlinxSerialization)
             }
         }
         val commonTest by getting {
@@ -80,6 +82,8 @@ object Libraries {
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
 
     const val kotlinxCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
+
+    const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
