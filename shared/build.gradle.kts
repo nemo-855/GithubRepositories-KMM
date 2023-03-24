@@ -1,7 +1,41 @@
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
+    id("maven-publish")
+}
+
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "github.properties")))
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("gpr") {
+            run {
+                groupId = "com.nemo.githubrepositories_kmm"
+                artifactId = artifactId
+                version = version
+                artifact("$buildDir/outputs/aar/$artifactId-release.aar")
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nemo-855/GithubRepositories-KMM")
+            version = "0.0.1"
+            credentials {
+                username = prop.getProperty("github_user").orEmpty()
+                password = prop.getProperty("github_key").orEmpty()
+            }
+        }
+    }
 }
 
 kotlin {
@@ -12,7 +46,7 @@ kotlin {
             }
         }
     }
-    
+
     listOf(
         iosX64(),
         iosArm64(),
@@ -30,7 +64,6 @@ kotlin {
                 implementation(Libraries.Koin.core)
                 implementation(Libraries.Koin.test)
                 implementation(Libraries.Ktor.core)
-                implementation(Libraries.Ktor.okhttp)
                 implementation(Libraries.kotlinxCoroutines)
                 implementation(Libraries.kotlinxSerialization)
             }
@@ -40,7 +73,11 @@ kotlin {
                 implementation(kotlin("test"))
             }
         }
-        val androidMain by getting
+        val androidMain by getting {
+            dependencies {
+                implementation(Libraries.Ktor.okhttp)
+            }
+        }
         val androidUnitTest by getting
         val iosX64Main by getting
         val iosArm64Main by getting
@@ -50,6 +87,9 @@ kotlin {
             iosX64Main.dependsOn(this)
             iosArm64Main.dependsOn(this)
             iosSimulatorArm64Main.dependsOn(this)
+            dependencies {
+                implementation(Libraries.Ktor.darwin)
+            }
         }
         val iosX64Test by getting
         val iosArm64Test by getting
@@ -94,5 +134,6 @@ object Libraries {
     object Ktor {
         const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val okhttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
+        const val darwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
     }
 }
