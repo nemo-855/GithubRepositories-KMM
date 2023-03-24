@@ -6,7 +6,7 @@ import com.nemo.githubrepositories_kmm.data.apis.interfaces.GithubApi
 import com.nemo.githubrepositories_kmm.data.apis.responses.FetchAllProjectsResponse
 
 internal class GithubApiImpl(private val networkService: NetworkService) : GithubApi {
-    override suspend fun fetchAllProjects(userName: String): FetchAllProjectsResponse {
+    override suspend fun fetchAllProjects(userName: String): List<FetchAllProjectsResponse> {
         return networkService.get("$githubApiEndpoint/users/{$userName}/repos")
     }
 }
