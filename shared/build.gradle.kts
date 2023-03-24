@@ -106,6 +106,7 @@ kotlin {
 android {
     namespace = "com.nemo.githubrepositories_kmm"
     compileSdk = 33
+    version = "0.0.1"
     defaultConfig {
         minSdk = 26
         targetSdk = 33
