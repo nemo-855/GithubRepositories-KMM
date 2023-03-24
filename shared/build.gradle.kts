@@ -1,7 +1,41 @@
+import java.io.File
+import java.io.FileInputStream
+import java.util.*
+
 plugins {
     kotlin("multiplatform")
     id("com.android.library")
     id("kotlinx-serialization")
+    id("maven-publish")
+}
+
+val prop = Properties().apply {
+    load(FileInputStream(File(rootProject.rootDir, "github.properties")))
+}
+
+publishing {
+    publications {
+        create<MavenPublication>("gpr") {
+            run {
+                groupId = "com.nemo.githubrepositories_kmm"
+                artifactId = artifactId
+                version = version
+                artifact("$buildDir/outputs/aar/$artifactId-release.aar")
+            }
+        }
+    }
+
+    repositories {
+        maven {
+            name = "GitHubPackages"
+            url = uri("https://maven.pkg.github.com/nemo-855/GithubRepositories-KMM")
+            version = "0.0.1"
+            credentials {
+                username = prop.getProperty("github_user").orEmpty()
+                password = prop.getProperty("github_key").orEmpty()
+            }
+        }
+    }
 }
 
 kotlin {
