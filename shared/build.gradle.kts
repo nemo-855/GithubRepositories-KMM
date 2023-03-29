@@ -13,13 +13,15 @@ val prop = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "github.properties")))
 }
 
+val libVersion = "0.0.3"
+
 publishing {
     publications {
         create<MavenPublication>("gpr") {
             run {
                 groupId = "com.nemo.githubrepositories_kmm"
                 artifactId = artifactId
-                version = version
+                version = libVersion
                 artifact("$buildDir/outputs/aar/$artifactId-release.aar")
             }
         }
@@ -29,7 +31,7 @@ publishing {
         maven {
             name = "GitHubPackages"
             url = uri("https://maven.pkg.github.com/nemo-855/GithubRepositories-KMM")
-            version = "0.0.1"
+            version = libVersion
             credentials {
                 username = prop.getProperty("github_user").orEmpty()
                 password = prop.getProperty("github_key").orEmpty()
@@ -106,7 +108,6 @@ kotlin {
 android {
     namespace = "com.nemo.githubrepositories_kmm"
     compileSdk = 33
-    version = "0.0.1"
     defaultConfig {
         minSdk = 26
         targetSdk = 33
