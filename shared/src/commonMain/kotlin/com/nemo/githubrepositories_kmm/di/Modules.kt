@@ -19,10 +19,12 @@ private val commonModule = module {
     single<GithubRepository> { GithubRepositoryImpl(get()) }
 
     single<GithubUseCase> { GithubUseCaseImpl(get()) }
+
+    single { UseCaseModule() }
 }
 
 private val platFormModule = module {
 
 }
 
-val appModule = listOf(commonModule, platFormModule)
+fun appModule() = listOf(commonModule, platFormModule)
