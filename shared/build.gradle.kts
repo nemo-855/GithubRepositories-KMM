@@ -13,7 +13,7 @@ val prop = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "github.properties")))
 }
 
-val libVersion = "0.0.4"
+val libVersion = "0.0.5"
 
 publishing {
     publications {
