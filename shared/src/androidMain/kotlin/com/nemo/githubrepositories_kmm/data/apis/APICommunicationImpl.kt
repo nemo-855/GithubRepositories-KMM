@@ -1,6 +1,7 @@
 package com.nemo.githubrepositories_kmm.data.apis
 
 import com.nemo.githubrepositories_kmm.BuildConfig
+import com.nemo.githubrepositories_kmm.data.defaultKtorConfig
 import io.ktor.client.HttpClient
 import io.ktor.client.engine.okhttp.OkHttp
 import okhttp3.OkHttpClient
@@ -25,6 +26,7 @@ actual object APICommunicationImpl {
                             )
                         }
                     }
+                    defaultKtorConfig()
                 }
             }
         }

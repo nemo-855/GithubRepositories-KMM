@@ -66,6 +66,8 @@ kotlin {
                 implementation(Libraries.Koin.core)
                 implementation(Libraries.Koin.test)
                 implementation(Libraries.Ktor.core)
+                implementation(Libraries.Ktor.contentNegotiation)
+                implementation(Libraries.Ktor.serialization)
                 implementation(Libraries.kotlinxCoroutines)
                 implementation(Libraries.kotlinxSerialization)
             }
@@ -123,9 +125,7 @@ object Versions {
 
 object Libraries {
     const val kotlinDateTime = "org.jetbrains.kotlinx:kotlinx-datetime:0.4.0"
-
     const val kotlinxCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
-
     const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
 
     const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.10.0"
@@ -140,5 +140,7 @@ object Libraries {
         const val core = "io.ktor:ktor-client-core:${Versions.ktor}"
         const val okhttp = "io.ktor:ktor-client-okhttp:${Versions.ktor}"
         const val darwin = "io.ktor:ktor-client-darwin:${Versions.ktor}"
+        const val contentNegotiation = "io.ktor:ktor-client-content-negotiation:${Versions.ktor}"
+        const val serialization = "io.ktor:ktor-serialization-kotlinx-json:${Versions.ktor}"
     }
 }
