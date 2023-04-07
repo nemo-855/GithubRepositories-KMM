@@ -78,6 +78,7 @@ kotlin {
         val androidMain by getting {
             dependencies {
                 implementation(Libraries.Ktor.okhttp)
+                implementation(Libraries.okhttpLoggingInterceptor)
             }
         }
         val androidUnitTest by getting
@@ -126,6 +127,8 @@ object Libraries {
     const val kotlinxCoroutines = "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4"
 
     const val kotlinxSerialization = "org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.0"
+
+    const val okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:4.10.0"
 
     object Koin {
         const val core = "io.insert-koin:koin-core:${Versions.koin}"
