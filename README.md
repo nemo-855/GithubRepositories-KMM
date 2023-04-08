@@ -1,7 +1,7 @@
 ## ライブラリをGithubPackagesにあげる
 ```
 // ./gradlew clean
-// ./gradlew build
+// ./gradlew assembleRelease assembleDebug
 // 上のコマンドでリフレッシュした後で、
 
 
