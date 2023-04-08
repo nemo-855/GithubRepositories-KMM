@@ -1,5 +1,7 @@
 package com.nemo.githubrepositories_kmm.di
 
+import com.nemo.githubrepositories_kmm.data.apis.APICommunication
+import com.nemo.githubrepositories_kmm.data.apis.APICommunicationImpl
 import com.nemo.githubrepositories_kmm.data.apis.NetworkService
 import com.nemo.githubrepositories_kmm.data.apis.implements.GithubApiImpl
 import com.nemo.githubrepositories_kmm.data.apis.interfaces.GithubApi
@@ -12,7 +14,6 @@ import org.koin.dsl.module
 
 
 private val commonModule = module {
-    single { HttpClient() }
     single { NetworkService(get()) }
     single<GithubApi> { GithubApiImpl(get()) }
 
@@ -24,7 +25,7 @@ private val commonModule = module {
 }
 
 private val platFormModule = module {
-
+    single { APICommunicationImpl.createAPICommunication() }
 }
 
 fun appModule() = listOf(commonModule, platFormModule)
