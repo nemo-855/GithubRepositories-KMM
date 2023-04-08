@@ -13,17 +13,22 @@ val prop = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "github.properties")))
 }
 
-val libVersion = "0.0.7"
+val libVersion = "0.0.13"
 
 publishing {
     publications {
-        create<MavenPublication>("gpr") {
-            run {
-                groupId = "com.nemo.githubrepositories_kmm"
-                artifactId = artifactId
-                version = libVersion
-                artifact("$buildDir/outputs/aar/$artifactId-release.aar")
-            }
+        create<MavenPublication>("debug") {
+            groupId = "com.nemo.githubrepositories_kmm"
+            artifactId = artifactId
+            version = "$libVersion-debug"
+            artifact("$buildDir/outputs/aar/$artifactId-debug.aar")
+        }
+
+        create<MavenPublication>("release") {
+            groupId = "com.nemo.githubrepositories_kmm"
+            artifactId = artifactId
+            version = libVersion
+            artifact("$buildDir/outputs/aar/$artifactId-release.aar")
         }
     }
 
