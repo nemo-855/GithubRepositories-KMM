@@ -14,18 +14,19 @@ val prop = Properties().apply {
 }
 
 val libVersion = "0.0.13"
+val libGroupId = "com.nemo.githubrepositories_kmm"
 
 publishing {
     publications {
         create<MavenPublication>("debug") {
-            groupId = "com.nemo.githubrepositories_kmm"
+            groupId = "${libGroupId}_android"
             artifactId = artifactId
             version = "$libVersion-debug"
             artifact("$buildDir/outputs/aar/$artifactId-debug.aar")
         }
 
         create<MavenPublication>("release") {
-            groupId = "com.nemo.githubrepositories_kmm"
+            groupId = "${libGroupId}_android"
             artifactId = artifactId
             version = libVersion
             artifact("$buildDir/outputs/aar/$artifactId-release.aar")
