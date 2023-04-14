@@ -1,6 +1,7 @@
 package com.nemo.githubrepositories_kmm.data.apis.responses
 
 import com.nemo.githubrepositories_kmm.data.models.GithubProject
+import com.nemo.githubrepositories_kmm.data.models.Owner
 import kotlinx.datetime.Instant
 import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toLocalDateTime
@@ -14,21 +15,31 @@ class FetchAllProjectsResponse(
     val private: Boolean,
     val owner: OwnerResponse,
     @SerialName("created_at")
-    val createdAt: String
+    val createdAt: String,
+    @SerialName("html_url")
+    val htmlUrl: String,
 ) {
     fun toGithubProject() = GithubProject(
         id = id,
         name = name,
         isPrivate = private,
-        ownerName = owner.login,
-        createdTime = Instant.parse(createdAt).toLocalDateTime(TimeZone.currentSystemDefault())
+        owner = owner.toOwner(),
+        createdTime = Instant.parse(createdAt).toLocalDateTime(TimeZone.currentSystemDefault()),
+        htmlUrl = htmlUrl,
     )
 }
 
 @Serializable
 class OwnerResponse(
-    val login: String
-)
+    val login: String,
+    @SerialName("avatar_url")
+    val avatarUrl: String,
+) {
+    fun toOwner() = Owner(
+        name = login,
+        avatarUrl = avatarUrl,
+    )
+}
 
 @Serializable
 class GithubApiErrorResponse(

@@ -6,6 +6,7 @@ class GithubProject(
     val id: Int,
     val name: String,
     val isPrivate: Boolean,
-    val ownerName: String,
-    val createdTime: LocalDateTime
+    val owner: Owner,
+    val createdTime: LocalDateTime,
+    val htmlUrl: String,
 )
