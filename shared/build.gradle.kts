@@ -13,7 +13,7 @@ val prop = Properties().apply {
     load(FileInputStream(File(rootProject.rootDir, "github.properties")))
 }
 
-val libVersion = "0.0.13"
+val libVersion = "0.0.18"
 val libGroupId = "com.nemo.githubrepositories_kmm"
 
 publishing {
