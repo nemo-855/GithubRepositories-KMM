@@ -1,6 +1,5 @@
 package com.nemo.githubrepositories_kmm.di
 
-import com.nemo.githubrepositories_kmm.data.apis.APICommunication
 import com.nemo.githubrepositories_kmm.data.apis.APICommunicationImpl
 import com.nemo.githubrepositories_kmm.data.apis.NetworkService
 import com.nemo.githubrepositories_kmm.data.apis.implements.GithubApiImpl
@@ -9,7 +8,6 @@ import com.nemo.githubrepositories_kmm.data.repositories.implementations.GithubR
 import com.nemo.githubrepositories_kmm.data.repositories.interfaces.GithubRepository
 import com.nemo.githubrepositories_kmm.domain.GithubUseCase
 import com.nemo.githubrepositories_kmm.domain.GithubUseCaseImpl
-import io.ktor.client.HttpClient
 import org.koin.dsl.module
 
 
