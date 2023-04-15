@@ -8,7 +8,7 @@ import kotlinx.coroutines.flow.flow
 internal class GithubUseCaseImpl(
     private val githubRepository: GithubRepository
 ) : GithubUseCase {
-    override suspend fun fetchGithubProjects(userName: String): Flow<List<GithubProject>> {
+    override fun fetchGithubProjects(userName: String): Flow<List<GithubProject>> {
         return flow {
             githubRepository.fetchGithubProjects(userName = userName)
         }

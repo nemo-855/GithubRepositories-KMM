@@ -4,5 +4,5 @@ import com.nemo.githubrepositories_kmm.data.models.GithubProject
 import kotlinx.coroutines.flow.Flow
 
 interface GithubUseCase {
-    suspend fun fetchGithubProjects(userName: String): Flow<List<GithubProject>>
+    fun fetchGithubProjects(userName: String): Flow<List<GithubProject>>
 }
